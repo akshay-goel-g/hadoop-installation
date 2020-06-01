@@ -1,0 +1,59 @@
+- name: Donwload hadoop 3.2.1
+  unarchive:
+    src: http://apachemirror.wuchna.com/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
+    dest: /home/hadoop/
+    remote_src: yes
+    owner: hadoop
+    group: hadoop
+
+- name: Adding hadoop enviornment variable in .bashrc file
+  blockinfile:
+    block: "{{ lookup('file','hadoop_config.txt')}}"
+    dest: /home/hadoop/.bashrc
+    insertafter: EOF
+    state: present
+  become_user: hadoop
+  become: yes
+
+- name: Creating namenode and datanode directory
+  file: 
+    path: /home/hadoop/hadoopdata/hdfs/{{ item }}
+    state: directory
+    owner: hadoop
+    group: hadoop
+  with_items:
+    - namenode
+    - datanode
+
+- name: Edit core-site.xml file
+  blockinfile:
+    block: "{{ lookup('file','core-site.xml') }}"
+    dest: "/home/hadoop/hadoop-3.2.1/etc/hadoop/core-site.xml"
+    insertafter: "<configuration>"
+
+- name: Edit hdfs-site.xml file
+  blockinfile:
+    block: "{{ lookup('file','hdfs-site.xml') }}"
+    dest: "/home/hadoop/hadoop-3.2.1/etc/hadoop/hdfs-site.xml"
+    insertafter: "<configuration>"
+
+- name: Edit mapred-site.xml file
+  blockinfile:
+    block: "{{ lookup('file','mapred-site.xml') }}"
+    dest: "/home/hadoop/hadoop-3.2.1/etc/hadoop/mapred-site.xml"
+    insertafter: "<configuration>"
+
+- name: Edit yarn-site.xml file
+  blockinfile:
+    block: "{{ lookup('file','yarn-site.xml') }}"
+    dest: "/home/hadoop/hadoop-3.2.1/etc/hadoop/yarn-site.xml"
+    insertafter: "<configuration>"
+
+- name: Edit hadoop-env.sh
+  block:
+  - shell: "echo $(dirname $(dirname $(readlink $(readlink $(which java)))))"
+    register: java_home
+  - lineinfile:
+     line: "export JAVA_HOME={{ java_home.stdout }}"
+     dest: "/home/hadoop/hadoop-3.2.1/etc/hadoop/hadoop-env.sh"
+     insertafter: EOF 

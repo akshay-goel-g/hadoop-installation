@@ -1,0 +1,15 @@
+- name: Formating hadoop namenode
+  become_user: hadoop
+  become: yes
+  shell: "/home/hadoop/hadoop-3.2.1/bin/hdfs namenode -format" 
+
+- name: Start hadoop cluster
+  shell: "/home/hadoop/hadoop-3.2.1/sbin/start-dfs.sh"
+  become_user: hadoop
+  become: yes
+
+- name: Start yarn service
+  shell: "/home/hadoop/hadoop-3.2.1/sbin/start-yarn.sh"
+  become_user: hadoop
+  become: yes
+

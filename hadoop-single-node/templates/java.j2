@@ -1,0 +1,7 @@
+#! /bin/bash
+x=$(dirname $(dirname $(readlink $(readlink $(which java)))))
+export JAVA_HOME=$x
+export PATH=$PATH:$x
+export JRE_HOME=/usr/lib/jvm/jre
+export CLASS_PATH=.:$x/jre/lib:$x/lib:$x/lib/tools.jar
+x=" "

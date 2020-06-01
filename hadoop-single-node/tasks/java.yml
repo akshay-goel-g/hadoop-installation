@@ -1,0 +1,30 @@
+- name: Remove present java version
+  yum:
+   name: java*
+   state: absent
+   autoremove: yes
+
+- name: Removing any yum lock process
+  block:
+  - shell: "ps aux | grep yum | awk '{print $2}'"
+    register: yum_process
+  - shell: "kill -9 {{ item }}"
+    ignore_errors: yes
+    with_items: "{{ yum_process.stdout_lines }}"
+
+- name: Installaing java 11
+  yum:
+   name: java-11-openjdk-devel
+   state: latest
+   update_cache: yes
+
+- name: Setting JAVA_HOME and java enviornment variables
+  template: 
+    src: java.j2
+    dest: /etc/profile.d/java.sh
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Executing source to set enviorment  variable
+  shell: . /etc/profile.d/java.sh

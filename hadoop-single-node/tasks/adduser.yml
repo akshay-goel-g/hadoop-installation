@@ -1,0 +1,30 @@
+- name: Create user hadoop
+  user:
+    name: hadoop
+    password: '$1$M0FQJRz/$gbpaY6N7Nm4ZsCDvagt9T1'
+    state: present
+    system: no
+    createhome: yes
+    shell: /bin/bash
+    generate_ssh_key: yes
+    ssh_key_file: .ssh/id_rsa
+    ssh_key_comment: hadoop 
+
+- name: Ensuring the permission of authorized keys
+  file:
+   path: /home/hadoop/.ssh/authorized_keys
+   owner: hadoop
+   group: hadoop
+   mode: '0640'
+   state: touch
+
+- name: Adding pubilc key to authorized_keys
+  block:
+  - command: cat /home/hadoop/.ssh/id_rsa.pub
+    register: keys
+  - blockinfile: 
+     path: /home/hadoop/.ssh/authorized_keys
+     block: "{{ keys.stdout }}"
+     insertbefore: BOF 
+      
+

@@ -1,0 +1,6 @@
+---
+- name: setting selinux to disabled mode
+  replace:
+   path: /etc/selinux/config
+   regexp: 'SELINUX=enforcing'
+   replace: 'SELINUX=disabled'
