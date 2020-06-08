@@ -8,7 +8,7 @@
 
 - name: Adding hadoop enviornment variable in .bashrc file
   blockinfile:
-    block: "{{ lookup('file','hadoop_config.txt')}}"
+    block: "{{ lookup('file','hadoop_config.txt') }}"
     dest: /home/hadoop/.bashrc
     insertafter: EOF
     state: present
@@ -17,7 +17,7 @@
 
 - name: Creating namenode and datanode directory
   file: 
-    path: /home/hadoop/hadoopdata/hdfs/{{ item }}
+    path: "/home/hadoop/hadoopdata/hdfs/{{ item }}"
     state: directory
     owner: hadoop
     group: hadoop
