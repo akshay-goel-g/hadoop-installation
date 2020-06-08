@@ -13,6 +13,15 @@ Role Variables
 
 The hadoop user is created with default password "hadoop", you can change the hadoop user password in tasks/adduser.yml.
 
+Example
+-------
+
+- name: To install hadoop for single cluster
+  hosts: hadoop
+  become: yes
+  roles: 
+    - hadoop-single-node
+
 License
 -------
 
