@@ -16,11 +16,11 @@ The hadoop user is created with default password "hadoop", you can change the ha
 Example
 -------
 
-#- name: To install hadoop for single cluster
-#  hosts: hadoop
-#  become: yes
-#  roles: 
-#    - hadoop-single-node
+- name: To install hadoop for single cluster
+  hosts: hadoop
+  become: yes
+  roles: 
+    - hadoop-single-node
 
 License
 -------
