@@ -26,5 +26,4 @@
     group: root
     mode: '0644'
 
-- name: Executing source to set enviorment  variable
-  shell: . /etc/profile.d/java.sh
+

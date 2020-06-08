@@ -2,7 +2,7 @@
 # tasks file for hadoop-single-node
 
 - include: selinux.yml
-- include: java.yml
+#- include: java.yml
 - include: adduser.yml
 - include: hadoop_installation.yml
 - include: hadoop_start.yml
