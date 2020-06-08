@@ -12,4 +12,3 @@
   shell: "/home/hadoop/hadoop-3.2.1/sbin/start-yarn.sh"
   become_user: hadoop
   become: yes
-

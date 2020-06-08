@@ -25,6 +25,4 @@
   - blockinfile: 
      path: /home/hadoop/.ssh/authorized_keys
      block: "{{ keys.stdout }}"
-     insertbefore: BOF 
-      
-
+     insertbefore: BOF  

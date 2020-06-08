@@ -1,21 +1,22 @@
-- name: Adding ports in firewall
+- name: Adding port 9870 in firewall
   firewalld:
     port: 9870/tcp
     permanent: yes
     state: enabled
 
-- firewalld:
+- name: Adding port 8088 in firewall
+  firewalld:
     port: 8088/tcp
     permanent: yes
     state: enabled
 
-- name: TO check firewall settings and hadoop is working
+- name: To check firewall settings and hadoop is working
   become_user: hadoop
+  become: yes
   uri:
     url: http://localhost:9870   
   register: result
 
-- debug: 
+- name: HTTP status
+  debug: 
      msg: "{{ result.status }}"    
-
-
