@@ -16,7 +16,7 @@ The hadoop user is created with default password "hadoop", you can change the ha
 Example Playbook
 ----------------
 
-  - hosts: hadoop
+    - hosts: hadoop
       roles:
          - hadoop-single-node
 
