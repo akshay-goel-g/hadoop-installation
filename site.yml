@@ -1,6 +1,0 @@
----
-- name: To install hadoop for single cluster
-  hosts: hadoop
-  become: yes
-  roles: 
-    - hadoop-single-node
