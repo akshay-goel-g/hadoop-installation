@@ -6,7 +6,7 @@ Install hadoop on single node
 Requirements
 ------------
 
-python should be install and java >= 8 should be present, if java is not present or java <8 version you can uncomment java.yml in tasks/main.yml to install java 11. 
+python should be install and java >= 8 should be present.
 
 Role Variables
 --------------
