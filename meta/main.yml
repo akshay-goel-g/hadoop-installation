@@ -13,8 +13,6 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (GPLv2, CC-BY, etc)
-
   min_ansible_version: 1.2
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
@@ -33,7 +31,6 @@ galaxy_info:
      - name: Fedora
        versions:
        - all
-  
   # - name: SomePlatform
   #   versions:
   #   - all
