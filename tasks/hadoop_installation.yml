@@ -52,7 +52,7 @@
 - name: Edit hadoop-env.sh
   block:
   - name: Getting Java home path in variable
-    command: "echo $(dirname $(dirname $(readlink $(readlink $(which java)))))"
+    shell: "echo $(dirname $(dirname $(readlink $(readlink $(which java)))))"
     register: java_home
   - name: Appending Java home value in hadoop-env.sh
     lineinfile:
