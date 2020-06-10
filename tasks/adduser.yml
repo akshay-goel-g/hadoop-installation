@@ -8,7 +8,7 @@
     shell: /bin/bash
     generate_ssh_key: yes
     ssh_key_file: .ssh/id_rsa
-    ssh_key_comment: hadoop 
+    ssh_key_comment: hadoop
 
 - name: Ensuring the permission of authorized keys
   file:
@@ -22,7 +22,7 @@
   block:
   - command: cat /home/hadoop/.ssh/id_rsa.pub
     register: keys
-  - blockinfile: 
+  - blockinfile:
      path: /home/hadoop/.ssh/authorized_keys
      block: "{{ keys.stdout }}"
-     insertbefore: BOF  
+     insertbefore: BOF

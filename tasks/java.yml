@@ -19,7 +19,7 @@
    update_cache: yes
 
 - name: Setting JAVA_HOME and java enviornment variables
-  template: 
+  template:
     src: java.j2
     dest: /etc/profile.d/java.sh
     owner: root

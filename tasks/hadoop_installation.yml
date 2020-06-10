@@ -16,7 +16,7 @@
   become: yes
 
 - name: Creating namenode and datanode directory
-  file: 
+  file:
     path: "/home/hadoop/hadoopdata/hdfs/{{ item }}"
     state: directory
     owner: hadoop
@@ -56,4 +56,4 @@
   - lineinfile:
      line: "export JAVA_HOME={{ java_home.stdout }}"
      dest: "/home/hadoop/hadoop-3.2.1/etc/hadoop/hadoop-env.sh"
-     insertafter: EOF 
+     insertafter: EOF
