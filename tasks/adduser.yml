@@ -18,11 +18,13 @@
    mode: '0640'
    state: touch
 
-- name: Adding pubilc key to authorized_keys
+- name: Adding pubilc key to authorized_keys file
   block:
-  - command: cat /home/hadoop/.ssh/id_rsa.pub
+  - name: Register id_rsa.pub value in variable
+    command: cat /home/hadoop/.ssh/id_rsa.pub
     register: keys
-  - blockinfile:
+  - name: Inserting the public key value in authorized_keys file
+    blockinfile:
      path: /home/hadoop/.ssh/authorized_keys
      block: "{{ keys.stdout }}"
      insertbefore: BOF

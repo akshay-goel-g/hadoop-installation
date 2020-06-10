@@ -20,4 +20,4 @@
 
 - name: HTTP status
   debug:
-   msg: "{{result.status}}"
+   msg: "{{ result.status }}"
