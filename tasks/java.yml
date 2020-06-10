@@ -15,7 +15,7 @@
 - name: Installaing java 11
   yum:
    name: java-11-openjdk-devel
-   state: latest
+   state: present
    update_cache: yes
 
 - name: Setting JAVA_HOME and java enviornment variables

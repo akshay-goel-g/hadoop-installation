@@ -51,9 +51,11 @@
 
 - name: Edit hadoop-env.sh
   block:
-  - shell: "echo $(dirname $(dirname $(readlink $(readlink $(which java)))))"
+  - name: Getting Java home path in variable
+    command: "echo $(dirname $(dirname $(readlink $(readlink $(which java)))))"
     register: java_home
-  - lineinfile:
+  - name: Appending Java home value in hadoop-env.sh
+    lineinfile:
      line: "export JAVA_HOME={{ java_home.stdout }}"
      dest: "/home/hadoop/hadoop-3.2.1/etc/hadoop/hadoop-env.sh"
      insertafter: EOF
